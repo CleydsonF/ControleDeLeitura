@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TestePV.Models.Leitor>
+
+@{
+    ViewData["Title"] = "Leitor";
+}
+
+<h1>Leitor</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Cadastrar Leitor</a>
+</p>
+<table id="TabelaLeitores" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LeitorNome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CPF)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeitorNome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPF)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.LeitorId">Alterar</a> |
+                    <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.LeitorId">Detalhes</a> |
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.LeitorId">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+
+            $('#TabelaLeitores').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+    </script>
+}

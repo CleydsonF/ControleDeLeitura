@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TestePV.Models.Leitura>
+
+@{
+    ViewData["Title"] = "Leituras";
+}
+
+<h1>Leituras</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Cadastrar Leitura </a>
+</p>
+<table id="TabelaLeitura" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Leitor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Livro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Leitor.LeitorNome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Livro.LivroNome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.LeiturasId">Alterar</a> |
+                    <!---<a asp-action="Details" class="btn btn-primary" asp-route-id="@item.LeiturasId">Detalhes</a> |-->
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.LeiturasId">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+                    @section Scripts {
+    <script>
+        $(document).ready(function() {
+
+            $('#TabelaLeitura').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+    </script>
+}
